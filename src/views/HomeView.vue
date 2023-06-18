@@ -2,15 +2,19 @@
   <h1>Selamat Datang Di To Do List Rizka</h1>
   <div>
     <input v-model="newTodo" placeholder="Masukkan Kegiatan">
-    <button @click="addTodo">Tambah Kegiatan</button>
+    <button class="custom-button" @click="addTodo">Tambah Kegiatan</button>
     <br><br>
-    <button @click="hideCompleted = !hideCompleted">{{ hideCompleted ? 'Tampilkan Semua' : 'Sembunyikan yang sudah selesai' }}</button>
+    <button class="custom-button" @click="hideCompleted = !hideCompleted">
+      {{ hideCompleted ? 'Tampilkan Semua' : 'Sembunyikan yang sudah selesai' }}
+    </button>
     <ul>
       <li v-for="todo in visibleTodos" :key="todo.id">
-        <span :class="{ 'completed': todo.completed }" @click="toggleComplete(todo)">{{ todo.text }}</span>
-        <button v-if="!todo.completed" @click="completeTodo(todo.id)">Selesai</button>
-        <button v-if="todo.completed" @click="unCompleteTodo(todo.id)">Belum Selesai</button>
-        <button @click="removeTodo(todo.id)">Hapus</button>
+        <span :class="{ 'completed': todo.completed }" @click="toggleComplete(todo)">
+          {{ todo.text }}
+        </span>
+        <button class="custom-button" v-if="!todo.completed" @click="completeTodo(todo.id)">Selesai</button>
+        <button class="custom-button" v-if="todo.completed" @click="unCompleteTodo(todo.id)">Belum Selesai</button>
+        <button class="custom-button" @click="removeTodo(todo.id)">Hapus</button>
       </li>
     </ul>
   </div>
@@ -70,26 +74,37 @@ export default {
 </script>
 
 <style>
-*{
-  background-color: aqua;
+* {
+  background-color: rgb(76, 99, 29);
+  color: rgb(255, 255, 255);
 }
+
 ul {
   list-style: none;
   padding: 0;
 }
+
 li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: 1px solid #682020;
+  border-radius: 10px;
 }
+
 .completed {
   text-decoration: line-through;
 }
-button {
+
+button.custom-button {
   margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #0e8eca;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 </style>
